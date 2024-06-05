@@ -4,5 +4,8 @@ opencv-python
 transformers
 accelerate
 diffusers
-onnxruntime
+onnxruntime-gpu
 insightface
+omegaconf
+controlnet_aux
+gradio
