@@ -9,3 +9,9 @@ insightface
 omegaconf
 controlnet_aux
 gradio
+peft
+torch
+torchvision
+safetensors
+einops
+spaces

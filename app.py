@@ -112,44 +112,6 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", enable_lcm_arg=F
     def remove_tips():
         return gr.update(visible=False)
 
-    def get_example():
-        case = [
-            [
-                './examples/yann-lecun_resize.jpg',
-                "a man",
-                "Snow",
-                "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, (frame:1.2), deformed, ugly, deformed eyes, blur, out of focus, blurry, deformed cat, deformed, photo, anthropomorphic cat, monochrome, photo, pet collar, gun, weapon, blue, 3d, drones, drone, buildings in background, green",
-            ],
-            [
-                './examples/musk_resize.jpeg',
-                "a man",
-                "Mars",
-                "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, (frame:1.2), deformed, ugly, deformed eyes, blur, out of focus, blurry, deformed cat, deformed, photo, anthropomorphic cat, monochrome, photo, pet collar, gun, weapon, blue, 3d, drones, drone, buildings in background, green",
-            ],
-            [
-                './examples/sam_resize.png',
-                "a man",
-                "Jungle",
-                "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, (frame:1.2), deformed, ugly, deformed eyes, blur, out of focus, blurry, deformed cat, deformed, photo, anthropomorphic cat, monochrome, photo, pet collar, gun, weapon, blue, 3d, drones, drone, buildings in background, gree",
-            ],
-            [
-                './examples/schmidhuber_resize.png',
-                "a man",
-                "Neon",
-                "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, (frame:1.2), deformed, ugly, deformed eyes, blur, out of focus, blurry, deformed cat, deformed, photo, anthropomorphic cat, monochrome, photo, pet collar, gun, weapon, blue, 3d, drones, drone, buildings in background, green",
-            ],
-            [
-                './examples/kaifu_resize.png',
-                "a man",
-                "Vibrant Color",
-                "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, (frame:1.2), deformed, ugly, deformed eyes, blur, out of focus, blurry, deformed cat, deformed, photo, anthropomorphic cat, monochrome, photo, pet collar, gun, weapon, blue, 3d, drones, drone, buildings in background, green",
-            ],
-        ]
-        return case
-
-    def run_for_examples(face_file, prompt, style, negative_prompt):
-        return generate_image(face_file, None, prompt, negative_prompt, style, 30, 0.8, 0.8, 5, 42, False, True)
-
     def convert_from_cv2_to_image(img: np.ndarray) -> Image:
         return Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
@@ -429,15 +391,6 @@ def main(pretrained_model_name_or_path="wangqixun/YamerMIX_v8", enable_lcm_arg=F
             )
         
             enable_LCM.input(fn=toggle_lcm_ui, inputs=[enable_LCM], outputs=[num_steps, guidance_scale], queue=False)
-
-        gr.Examples(
-            examples=get_example(),
-            inputs=[face_file, prompt, style, negative_prompt],
-            run_on_click=True,
-            fn=run_for_examples,
-            outputs=[gallery, usage_tips],
-            cache_examples=True,
-        )
         
         gr.Markdown(article)
 
