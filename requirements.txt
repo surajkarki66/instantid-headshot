@@ -1,0 +1,8 @@
+gdown
+huggingface-hub
+opencv-python
+transformers
+accelerate
+diffusers
+onnxruntime
+insightface
